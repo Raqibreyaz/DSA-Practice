@@ -57,7 +57,7 @@ private:
     int countReversePairs(vector<int> & nums, int s,int m,int e){
         int count = 0;
         for(int  i=s,j=m+1; i <= m && j <= e;){
-            if(nums[i]/2 > nums[j]){
+            if(static_cast<long long>(nums[i]) >static_cast<long long>(nums[j]) *2){
                 count += m - i +1;
                 j++;
             }
