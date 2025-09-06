@@ -7,19 +7,13 @@ public:
 
         int newLength = removeExtraSpace(s);
 
-        cout<<"\""<<s<<"\""<<endl;
-
         // removing all the unnecessary characters
-        s.erase(newLength);
+        s.erase(newLength, s.length() - newLength+1);
 
         while(s.back() == ' ')
             s.pop_back();
 
-        cout<<"\""<<s<<"\""<<endl;
-
         reverseWordByWord(s);
-
-        cout<<"\""<<s<<"\""<<endl;
 
         return s;
     }
