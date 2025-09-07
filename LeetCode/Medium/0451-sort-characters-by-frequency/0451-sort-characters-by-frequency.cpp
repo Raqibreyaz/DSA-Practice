@@ -6,7 +6,9 @@
     - TC = O(N) , SC = O(1)
 
 2nd approach (Hashmap + priority_queue):
-
+    - count frequency in unordered_map
+    - store all freq pairs in a priority queue acording to freq
+    - pop each time and write chars to string
 */
 
 class Solution {
@@ -18,18 +20,21 @@ public:
             freq[ch]++;
         }
 
-        vector<pair<char,int>> freqVector(freq.begin(),freq.end());
+        priority_queue<pair<char,int>> freqPQ;
         
-        sort(freqVector.begin(),freqVector.end(),[](const auto& p1,const auto& p2){
-            return p1.second > p2.second;
-        });
+        // storing every char with frequency
+        for(const auto&[ch,f]: freq){
+            freqPQ.push({f,ch});
+        }
 
-        int i = 0;
-        for(const auto& [ch,freq]: freqVector){
-            
+        for(int i = 0; !freqPQ.empty();){
+            const auto& [f,ch] = freqPQ.top();
+
             // putting the char 'freq' times
-            for(int  j = freq; j > 0; j--)
-                s[i++] = ch;
+            for(int  j = f; j > 0; j--,i++)
+                s[i] = ch;
+
+            freqPQ.pop();
         }
 
         return s;
