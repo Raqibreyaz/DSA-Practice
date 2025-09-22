@@ -9,7 +9,7 @@ public:
         isPrime[0] = false;
         isPrime[1] = false;
         for(int i = 2; i < n; i++){
-            for(int j = 2; i * j < n; j++){
+            for(int j = i; 1LL * j * i < n; j++){
                 isPrime[i * j] = false;
             }
         }
